@@ -1,0 +1,86 @@
+
+$Revision: 1242 $
+
+Installation Instructions
+-------------------------
+
+1) build ns-2.35 in a separate directory
+2) tar xvzf mftdma-dama.tar.gz
+3) export NSDIR=/nspath/ns-2.35
+	
+   where nspath is the path to ns-2 directory
+   (not the ns-allinone, the ns-2 directory inside it)
+
+4) In order to install the utility 'fullrun' the 
+   libraries 'libconfig' and 'libpthread' need to be installed
+
+5) Run "make" from TDMA-DAMA directory
+6) Run "make install" from TDMA-DAMA directory
+   to move the ns binary into your bin
+
+
+TCP Helper Functions (interface)
+--------------------------------
+
+Allocator/MFTDMA instproc cra {mac_ter rate}
+
+o) This function setups the constant rate assignent (CRA) to 'rate' for the
+   MAC specified by the first parameter. The rate is in kb/s.
+
+
+Allocator/MFTDMA instproc new-frame { car ts bs }
+
+o) Add a new Frame to the Superframe managed for the Allocator/MFTDMA object
+   (the radio resource manager - RRM) from which this procedure is called. 
+   The new frame has 'car' carriers, 'ts' timeslots per carrier, and burst
+   lengths of 'bs' bytes.
+
+
+Allocator/MFTDMA instproc add-rule args 
+
+o) Ask to r.secchi@abdn.ac.uk 
+
+
+Simulator instproc setup-geolink {ternode satnode} 
+
+o) Create the LL and MAC stack for the terminal 'ternode' referring 
+   the satellite 'satnode'.
+
+
+Node/SatNode instproc start-req
+Node/SatNode instproc stop-req
+
+o) Enable/disable the transmission of capacity requests for the object
+   Node/SatNode on which the procedure is called.
+   
+
+Node/SatNode instproc interface-errormodel { em { index 0 } } 
+
+o) Insert an errormodel just above the MAC layer for emulating the
+   error introduced when decoding the burst. The argument 'em' is
+   the object handler of the error model.
+
+
+Node/SatNode instproc install-allocator {type {index_ 0} } 
+
+o) Install the allocator into the Master node. The argument 'type'
+   define the type of allocator (e.g. Allocator/MFTDMA)
+
+
+Simulator instproc satRequester {type_} 
+Simulator instproc satAllocator {type_} 
+Simulator instproc requesterType {val} {$self set requesterType_ $val}
+Simulator instproc allocatorType {val} {$self set allocatorType_ $val}
+
+o) Interface functions for reading/setting the requester and allocator types
+
+
+
+TCP Helper Functions (tracing)
+------------------------------
+
+Allocator/MFTDMA instproc trace-sf { filedes {index_ 0}}
+Node/SatNode instproc trace-event { filedes {index_ 0}} 
+
+
+
