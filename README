@@ -1,5 +1,5 @@
 
-$Revision: 1242 $
+$Revision: 1243 $
 
 Installation Instructions
 -------------------------
@@ -15,11 +15,11 @@ Installation Instructions
    libraries 'libconfig' and 'libpthread' need to be installed
 
 5) Run "make" from TDMA-DAMA directory
-6) Run "make install" from TDMA-DAMA directory
+6) Run "sudo -E make install" from TDMA-DAMA directory
    to move the ns binary into your bin
 
 
-TCP Helper Functions (interface)
+Tcl Helper Functions (interface)
 --------------------------------
 
 Allocator/MFTDMA instproc cra {mac_ter rate}
@@ -76,7 +76,7 @@ o) Interface functions for reading/setting the requester and allocator types
 
 
 
-TCP Helper Functions (tracing)
+Tcl Helper Functions (tracing)
 ------------------------------
 
 Allocator/MFTDMA instproc trace-sf { filedes {index_ 0}}
